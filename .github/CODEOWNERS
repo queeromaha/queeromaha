@@ -1,5 +1,5 @@
 # Written by voidflow v1.0.0-next.4: https://www.npmjs.com/package/@taraxvoid/voidflow
-# Set up a repo the same way: npx @taraxvoid/voidflow init --kind tool
+# Set up a repo the same way: npx @taraxvoid/voidflow init --kind site
 # Paths a misbehaving bot or a malicious pull request would edit to change how
 # the repo, CI or an agent behaves. Require review from Code Owners (the
 # branch ruleset's require_code_owner_review) makes a change here need an
