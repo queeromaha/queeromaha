@@ -7,29 +7,29 @@
 # Last match wins; add narrower rules below to hand a path to someone else.
 
 # CI, workflows, actions.lock and this file
-/.github/ @OWNER
+/.github/ @queeromaha/devs
 
 # Agent and editor directives
-/CLAUDE.md @OWNER
-/AGENTS.md @OWNER
-/GEMINI.md @OWNER
-/.claude/ @OWNER
-/.cursor/ @OWNER
-/.cursorrules @OWNER
-/.mcp.json @OWNER
+/CLAUDE.md @queeromaha/devs
+/AGENTS.md @queeromaha/devs
+/GEMINI.md @queeromaha/devs
+/.claude/ @queeromaha/devs
+/.cursor/ @queeromaha/devs
+/.cursorrules @queeromaha/devs
+/.mcp.json @queeromaha/devs
 
 # Tooling and hooks
-/renovate.json @OWNER
-/lefthook.yml @OWNER
-/mise.toml @OWNER
-/biome.json @OWNER
-/bunfig.toml @OWNER
+/renovate.json @queeromaha/devs
+/lefthook.yml @queeromaha/devs
+/mise.toml @queeromaha/devs
+/biome.json @queeromaha/devs
+/bunfig.toml @queeromaha/devs
 
 # Scripts, dependencies and lockfiles
-/package.json @OWNER
-/bun.lock @OWNER
-/package-lock.json @OWNER
-/pnpm-lock.yaml @OWNER
-/yarn.lock @OWNER
+/package.json @queeromaha/devs
+/bun.lock @queeromaha/devs
+/package-lock.json @queeromaha/devs
+/pnpm-lock.yaml @queeromaha/devs
+/yarn.lock @queeromaha/devs
 
-/SECURITY.md @OWNER
+/SECURITY.md @queeromaha/devs
