@@ -28,6 +28,9 @@
 # Scripts, dependencies and lockfiles
 /package.json @queeromaha/devs
 /bun.lock @queeromaha/devs
+/scripts/ @queeromaha/devs
+/netlify/           @queeromaha/devs
+/netlify.toml       @queeromaha/devs
 /package-lock.json @queeromaha/devs
 /pnpm-lock.yaml @queeromaha/devs
 /yarn.lock @queeromaha/devs
