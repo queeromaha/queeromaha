@@ -15,7 +15,7 @@
         "test:structured-data": "vitest run test/structured-data.test.ts",
         "test:e2e": "bun run build && playwright test --project=mobile-chrome",
         "test:e2e:full": "playwright test --project=mobile-chrome",
-        "test:e2e:a11y": "playwright test --grep @a11y",
+        "test:e2e:a11y": "playwright test --project=mobile-chrome --grep @a11y",
         "test:e2e:smoke": "playwright test --project=mobile-chrome site.spec",
         "test:e2e:desktop": "bun run build && playwright test --project=desktop-chrome",
         "test:e2e:all": "playwright test",
