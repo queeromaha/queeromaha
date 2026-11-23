@@ -158,6 +158,16 @@ The `commit-msg` hook checks every commit message against this format. It is **a
 bunx oco config set OCO_AI_PROVIDER=<provider> OCO_API_KEY=<key>
 ```
 
+### Releasing
+
+There are no `next`, `live` or `release/*` branches. `main` is the only long-lived branch and is always releasable:
+
+1. Open a pull request against `main`. CI must pass (`validate / Validate`), and non-draft PRs get a Worker Preview.
+2. Merge it. The push to `main` deploys the Worker to production (see [Via CI](#via-ci)). Netlify still builds queeromaha.net from `main` until the cutover finishes.
+3. Optionally refresh the changelog with `bun run changelog` (see below), committed through a normal PR.
+
+Use [Conventional Commits](https://www.conventionalcommits.org) so changes land in the changelog.
+
 ### Changelog (git-cliff)
 
 The changelog is generated from git history by [git-cliff](https://git-cliff.org), configured in `cliff.toml`. Commits that don't parse as Conventional Commits are silently excluded.

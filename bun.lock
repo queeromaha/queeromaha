@@ -32,12 +32,10 @@
         "@socketsecurity/bun-security-scanner": "^1.1.2",
         "@taraxvoid/voidflow": "^1.2.1",
         "@types/bun": "^1.4.1",
-        "@types/semver": "^7.8.0",
         "favicons": "^7.3.1",
         "happy-dom": "^21.0.4",
         "npm-run-all2": "^9.0.3",
         "satori": "^0.46.0",
-        "semver": "^7.8.5",
         "sharp": "^0.35.5",
         "typescript": "^6.0.3",
         "vitest": "^4.1.11",
@@ -511,7 +509,6 @@
 
     "@types/sax": ["@types/sax@1.2.7", "", { "dependencies": { "@types/node": "*" } }, "sha512-rO73L89PJxeYM3s3pPPjiPgVVcymqU490g0YO5n5By0k2Erzj6tay/4lr1CHAAU4JyOWd1rpQ8bCf6cZfHU96A=="],
 
-    "@types/semver": ["@types/semver@7.8.0", "", {}, "sha512-1mAINjtQCXXeLkJ9ehXkwOcBpqtLxiVtKhpUf83DdRNdQKV0iXZpaHYqRr7nj+wvxuJzoAmAwXI+sCNMv1CzLQ=="],
 
     "@types/trusted-types": ["@types/trusted-types@2.0.7", "", {}, "sha512-ScaPdn1dQczgbl0QFTeTOmVHFULt394XJgOQNoyVhZ6r2vLnMLJfBPd53SB52T/3G36VI1/g2MZaX0cwDuXsfw=="],
 
