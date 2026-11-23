@@ -105,6 +105,14 @@ items:
         url: https://www.instagram.com/queeeromaha
     tags:
       - online
+  - name: Beyond Our Bubble Instagram
+    public: true
+    description: Queer events to get youse outta the house
+    links:
+      - label: Instagram
+        url: https://www.instagram.com/beyond.our.bubble
+    tags:
+      - online
   - name: Trans Nebraska
     public: true
     description: Online peer social group ran by Babs Ramsey.
