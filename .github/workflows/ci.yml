@@ -19,16 +19,9 @@ permissions:
   contents: read
 
 jobs:
-  # worker/** counts as e2e-relevant code under site-ci's default
-  # e2e-ignore-paths.
-  #
-  # Skip closed events here, not just inside site-ci: a merged PR's `closed`
-  # run has github.ref = refs/heads/main (its merge ref is gone), so site-ci's
-  # Validate job joins the same concurrency group as the merge's push run
-  # (ci-CI-refs/heads/main) and cancels it. Skipping at the caller means the
-  # called workflow's jobs, and their concurrency group, never start.
+  # site-ci skips closed events itself, and worker/** counts as e2e-relevant
+  # code under its default e2e-ignore-paths.
   validate:
-    if: github.event.action != 'closed'
     # site-ci.yml declares pull-requests: read, so the caller must grant it
     permissions:
       contents: read
