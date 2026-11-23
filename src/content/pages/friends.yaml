@@ -87,13 +87,22 @@ items:
     tags:
       - online
   - name: Out Wild Adventures
-    public: true
+    public: false
     description: Kayaking, hikes and coffee chats. Sober-friendly
     links:
       - label: Register
         url: https://forms.gle/k2HhE8boH47rkJpT6
       - label: Website
         url: https://flow.page/outwildadventures
+    tags:
+      - online
+    notes: in flux circa nov '26
+  - name: Queer Omaha Instagram
+    public: true
+    description: Drag shows, music, trans* centered events - (not affiliated w/ this site)
+    links:
+      - label: Instagram
+        url: https://www.instagram.com/queeeromaha
     tags:
       - online
   - name: Trans Nebraska
