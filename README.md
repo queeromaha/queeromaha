@@ -1,4 +1,4 @@
-# queeromaha.net
+# queeromaha
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/eb46506c-ce32-4485-ae05-ae4872ac953c/deploy-status)](https://app.netlify.com/projects/queeromaha/deploys)
 
@@ -47,7 +47,7 @@ bun run dev
 
 ## Deployment
 
-Hosting is moving from Netlify to Cloudflare Workers ([#367](https://github.com/queeromaha/queeromaha.net/issues/367)) as a blue/green cutover:
+Hosting is moving from Netlify to Cloudflare Workers ([#367](https://github.com/queeromaha/queeromaha/issues/367)) as a blue/green cutover:
 
 - **Green:** a Worker on [queeromaha.dev](https://queeromaha.dev) serving `dist/` as static assets, Worker `queeromaha-net`, deployed with [Wrangler](https://developers.cloudflare.com/workers/wrangler/) (`wrangler.jsonc`). The Worker (`worker/`) handles the contact and Suggestion Box form POSTs (emailed through Cloudflare Email Routing) and `Accept: text/markdown` negotiation.
 - **Blue:** Netlify keeps serving queeromaha.net (`netlify.toml`, `netlify/`) until cutover.

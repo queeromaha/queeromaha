@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "queeromaha.com",
+      "name": "queeromaha",
       "dependencies": {
         "@astrojs/sitemap": "^3.7.4",
         "@awesome.me/webawesome": "^3.12.0",
