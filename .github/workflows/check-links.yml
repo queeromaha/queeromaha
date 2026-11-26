@@ -32,7 +32,7 @@ jobs:
           restore-keys: ${{ runner.os }}-bun-
 
       - name: Install dependencies
-        uses: taraxvoid/voidflow/actions/bun-install@cdc6541fceeb733c340886b38e7483308279ea0d # v1.3.0
+        uses: taraxvoid/voidflow/actions/bun-install@6debbf253b3514375d712af47d1007546bd7b79a # v1.5.0
       - run: bun run build
 
       - name: Check links
