@@ -30,6 +30,7 @@
         "check:content": "astro sync",
         "check:licenses": "check-licenses",
         "check:links": "bun scripts/check-links.ts",
+        "check:voidflow": "voidflow check",
         "serve": "astro dev",
         "build": "astro build && bun scripts/generate-redirects.ts && cp dist/sitemap-index.xml dist/sitemap.xml",
         "preview": "wrangler dev",
