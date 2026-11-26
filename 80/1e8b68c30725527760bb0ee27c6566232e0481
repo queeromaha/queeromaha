@@ -1,0 +1,14 @@
+.gitignore
+  h_f0add3b575c958 61-62
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.5",
+  "base_commit_sha": "801e8b68c30725527760bb0ee27c6566232e0481",
+  "prompts": {},
+  "humans": {
+    "h_f0add3b575c958": {
+      "author": "void <1711810+taraxvoid@users.noreply.github.com>"
+    }
+  }
+}
