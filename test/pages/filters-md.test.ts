@@ -9,7 +9,7 @@ vi.mock(import('astro:content'), () => ({
 function mockDirectory() {
     vi.mocked(getCollection).mockResolvedValue([
         {
-            id: 'friends',
+            id: 'social',
             data: {
                 items: [
                     {
@@ -39,16 +39,14 @@ beforeEach(() => {
 
 describe('GET /[...filters].md', () => {
     test('sets markdown content type', async () => {
-        const res = await GET({ params: { filters: 'friends' } })
+        const res = await GET({ params: { filters: 'social' } })
         expect(res.headers.get('Content-Type')).toBe(
             'text/markdown; charset=utf-8',
         )
     })
 
     test('category page lists visible items with links', async () => {
-        const body = await (
-            await GET({ params: { filters: 'friends' } })
-        ).text()
+        const body = await (await GET({ params: { filters: 'social' } })).text()
         expect(body).toContain('### OmahaForUs')
         expect(body).toContain(
             '[Events Calendar](https://omahafor.us/events-calendar)',
@@ -57,14 +55,14 @@ describe('GET /[...filters].md', () => {
 
     test('item permalink page renders only that item, not the whole category', async () => {
         const body = await (
-            await GET({ params: { filters: 'friends/omaha-for-us' } })
+            await GET({ params: { filters: 'social/omaha-for-us' } })
         ).text()
         expect(body).toContain('# OmahaForUs | LGBTQ+ Groups & Community')
         expect(body).toContain('Hub of community, resources, and events')
         expect(body).not.toContain('The Queer Collective')
     })
 
-    test('root page mirrors the friends category', async () => {
+    test('root page mirrors the social category', async () => {
         const body = await (await GET({ params: { filters: '' } })).text()
         expect(body).toContain('### OmahaForUs')
         expect(body).toContain('The Queer Collective')

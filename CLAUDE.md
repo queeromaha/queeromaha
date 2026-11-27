@@ -72,7 +72,7 @@ Static site built with **Astro**, served from Cloudflare Workers static assets w
 
 ### Content model
 
-Directory pages live as plain YAML in `src/content/pages/*.yaml`. Each file is a category (friends, spiritual, art, cafes, music, makers) with an `items` array.
+Directory pages live as plain YAML in `src/content/pages/*.yaml`. Each file is a category (social, spiritual, art, cafes, music, makers) with an `items` array.
 
 Item fields (see `itemSchema` in `src/content.config.ts`):
 

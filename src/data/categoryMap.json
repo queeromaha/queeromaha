@@ -1,7 +1,7 @@
 {
-    "friends": {
+    "social": {
         "icon": "fa7-solid:people-group",
-        "label": "Friends",
+        "label": "Social",
         "descriptor": "LGBTQ+ Groups & Community"
     },
     "spiritual": {

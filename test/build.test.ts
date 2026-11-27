@@ -67,7 +67,7 @@ describe('astro build', () => {
             'cafes/index.html',
             'music/index.html',
             'makers/index.html',
-            'friends/index.html',
+            'social/index.html',
             'spiritual/index.html',
             'robots.txt',
             'sitemap.xml',
@@ -91,7 +91,7 @@ describe('astro build', () => {
     test('404.html contains a link back to the directory', () => {
         const html = readFileSync(join(ROOT, 'dist', '404.html'), 'utf8')
         expect(html).toContain('data-notfound-link')
-        expect(html).toContain('href="/friends"')
+        expect(html).toContain('href="/social"')
     })
 
     test('_redirects has legacy redirects', () => {
@@ -99,9 +99,9 @@ describe('astro build', () => {
             join(ROOT, 'public', '_redirects'),
             'utf8',
         )
-        expect(redirects).toMatch(/^\/\s+\/friends/m)
-        expect(redirects).toMatch(/\/social\s+\/friends/)
-        expect(redirects).toMatch(/\/community\s+\/friends/)
+        expect(redirects).toMatch(/^\/\s+\/social/m)
+        expect(redirects).toMatch(/\/friends\s+\/social/)
+        expect(redirects).toMatch(/\/community\s+\/social/)
     })
 
     test('privacy/index.html has a back-to-directory link', () => {
@@ -110,7 +110,7 @@ describe('astro build', () => {
             'utf8',
         )
         expect(html).toContain('back-link')
-        expect(html).toContain('href="/friends"')
+        expect(html).toContain('href="/social"')
     })
 
     test('contact/index.html has a Netlify form and a back-to-directory link', () => {
@@ -121,7 +121,7 @@ describe('astro build', () => {
         expect(html).toContain('name="contact"')
         expect(html).toContain('data-netlify="true"')
         expect(html).toContain('back-link')
-        expect(html).toContain('href="/friends"')
+        expect(html).toContain('href="/social"')
     })
 
     test('llms.txt lists the privacy and contact pages', () => {
@@ -133,16 +133,16 @@ describe('astro build', () => {
     test('dist/_redirects redirects the OmahaForUs auto-slug to its vanity_slug', () => {
         const redirects = readFileSync(join(ROOT, 'dist', '_redirects'), 'utf8')
         expect(redirects).toMatch(
-            /\/friends\/omaha-for-us\s+\/friends\/o4us\s+301/,
+            /\/social\/omaha-for-us\s+\/social\/o4us\s+301/,
         )
     })
 
     test('dist contains the OmahaForUs item permalink page', () => {
-        const itemPage = join(ROOT, 'dist', 'friends', 'o4us', 'index.html')
+        const itemPage = join(ROOT, 'dist', 'social', 'o4us', 'index.html')
         expect(existsSync(itemPage)).toBe(true)
         const html = readFileSync(itemPage, 'utf8')
         expect(html).toContain('data-initial-item-slug="o4us"')
-        expect(html).toContain('id="friends-o4us"')
+        expect(html).toContain('id="social-o4us"')
     })
 
     // robots.txt / llms.txt content details (bot allowlist, content-signal,
@@ -157,9 +157,9 @@ describe('astro build', () => {
         expect(headers).toContain('service-doc')
     })
 
-    test('friends/index.html contains filter pills and wa-card items', () => {
+    test('social/index.html contains filter pills and wa-card items', () => {
         const html = readFileSync(
-            join(ROOT, 'dist', 'friends', 'index.html'),
+            join(ROOT, 'dist', 'social', 'index.html'),
             'utf8',
         )
         expect(html).toContain('filter-pill')
@@ -167,12 +167,12 @@ describe('astro build', () => {
         expect(html).toContain('data-category')
     })
 
-    test('friends/index.html has data-initial-categories="friends"', () => {
+    test('social/index.html has data-initial-categories="social"', () => {
         const html = readFileSync(
-            join(ROOT, 'dist', 'friends', 'index.html'),
+            join(ROOT, 'dist', 'social', 'index.html'),
             'utf8',
         )
-        expect(html).toContain('data-initial-categories="friends"')
+        expect(html).toContain('data-initial-categories="social"')
     })
 
     test('category pages only ship their own category cards', () => {
@@ -205,9 +205,9 @@ describe('astro build', () => {
         expect(ics).toContain('Game Night')
     })
 
-    test('friends/index.html contains footer calendar subscribe link', () => {
+    test('social/index.html contains footer calendar subscribe link', () => {
         const html = readFileSync(
-            join(ROOT, 'dist', 'friends', 'index.html'),
+            join(ROOT, 'dist', 'social', 'index.html'),
             'utf8',
         )
         expect(html).toContain('calendar.google.com')
@@ -215,9 +215,9 @@ describe('astro build', () => {
         expect(html).toContain('webcal://queeromaha.net/events.ics')
     })
 
-    test('friends/index.html has calendar autodiscovery link', () => {
+    test('social/index.html has calendar autodiscovery link', () => {
         const html = readFileSync(
-            join(ROOT, 'dist', 'friends', 'index.html'),
+            join(ROOT, 'dist', 'social', 'index.html'),
             'utf8',
         )
         expect(html).toContain('rel="alternate"')
@@ -227,20 +227,20 @@ describe('astro build', () => {
 
     test('dist contains markdown counterparts for the root, category, and item pages', () => {
         const distDir = join(ROOT, 'dist')
-        for (const file of ['.md', 'friends.md', 'friends/o4us.md']) {
+        for (const file of ['.md', 'social.md', 'social/o4us.md']) {
             expect(existsSync(join(distDir, file)), `missing: ${file}`).toBe(
                 true,
             )
         }
     })
 
-    test('friends/index.html contains an ItemList JSON-LD tying the visible items together', () => {
+    test('social/index.html contains an ItemList JSON-LD tying the visible items together', () => {
         const html = readFileSync(
-            join(ROOT, 'dist', 'friends', 'index.html'),
+            join(ROOT, 'dist', 'social', 'index.html'),
             'utf8',
         )
         expect(html).toContain('"@type":"ItemList"')
-        expect(html).toContain('https://queeromaha.net/friends/o4us')
+        expect(html).toContain('https://queeromaha.net/social/o4us')
     })
 
     // Critical font preload hrefs are hardcoded in HeadMeta.astro with
@@ -260,9 +260,9 @@ describe('astro build', () => {
         })
     }
 
-    test('friends/index.html preloads the critical body and display fonts', () => {
+    test('social/index.html preloads the critical body and display fonts', () => {
         const html = readFileSync(
-            join(ROOT, 'dist', 'friends', 'index.html'),
+            join(ROOT, 'dist', 'social', 'index.html'),
             'utf8',
         )
         for (const name of criticalFonts) {

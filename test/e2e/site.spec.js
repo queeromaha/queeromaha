@@ -1,7 +1,7 @@
 import { expect, test } from '@playwright/test'
 
 const pages = [
-    { path: '/friends/', titleContains: 'Queer' },
+    { path: '/social/', titleContains: 'Queer' },
     // filter slug pages all share the directory title
     { path: '/music/', titleContains: 'Queer' },
     { path: '/cafes/', titleContains: 'Queer' },
@@ -25,7 +25,7 @@ test('home page renders expected chrome with no console errors', async ({
     page.on('console', (msg) => {
         if (msg.type() === 'error') errors.push(msg.text())
     })
-    await page.goto('/friends/')
+    await page.goto('/social/')
 
     const nav = page.locator('nav.main-nav')
     await expect(nav).toBeVisible()
@@ -67,9 +67,9 @@ test('/spiritual pre-activates the spiritual filter pill', async ({ page }) => {
     await expect(pill).toHaveAttribute('data-filter-match', 'true')
 })
 
-test('/ highlights the default friends category pill', async ({ page }) => {
+test('/ highlights the default social category pill', async ({ page }) => {
     await page.goto('/')
-    await expect(page.locator('[data-filter="friends"]')).toHaveAttribute(
+    await expect(page.locator('[data-filter="social"]')).toHaveAttribute(
         'data-filter-match',
         'true',
     )
@@ -104,7 +104,7 @@ test('calendar and suggestion box stay on the same row on mobile', async ({
     // align-items: center on the footer turns into a ~12px vertical
     // offset between the two pills instead of a clean single row.
     await page.setViewportSize({ width: 412, height: 839 })
-    await page.goto('/friends/')
+    await page.goto('/social/')
 
     const calBox = await page.locator('.calendar-box summary').boundingBox()
     const navBox = await page.locator('#suggestionBox summary').boundingBox()
@@ -152,7 +152,7 @@ test('no footer toggle moves when opened, at any viewport width', async ({
     // equivalent to checking them in isolation).
     for (const viewport of REGRESSION_VIEWPORTS) {
         await page.setViewportSize(viewport)
-        await page.goto('/friends/')
+        await page.goto('/social/')
 
         for (const [box, summarySelector, panelSelector] of [
             ['calendar', '.calendar-box summary', '.calendar-box-panel-wrap'],
@@ -185,7 +185,7 @@ test('none of the three footer panels stretch to the full footer width', async (
     page,
 }) => {
     await page.setViewportSize({ width: 1024, height: 768 })
-    await page.goto('/friends/')
+    await page.goto('/social/')
     // Scoped to the site footer specifically -- wa-card renders its own
     // light-DOM <footer part="footer">, so an unscoped `footer` locator
     // matches every card on the page too.
@@ -208,7 +208,7 @@ test('calendar panel grows rightward from its own left edge; suggestion panel gr
     page,
 }) => {
     await page.setViewportSize({ width: 412, height: 839 })
-    await page.goto('/friends/')
+    await page.goto('/social/')
 
     const calSummary = page.locator('.calendar-box summary')
     const calSummaryBox = await calSummary.boundingBox()
@@ -233,7 +233,7 @@ test('calendar panel grows rightward from its own left edge; suggestion panel gr
 test('suggestion box pill is tucked against the right separator, next to the utility gear icon', async ({
     page,
 }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
 
     const suggestionBox = await page.locator('.suggestion-box').boundingBox()
     const separatorRight = await page
@@ -257,7 +257,7 @@ test('a separator divides the calendar and suggestion box pills, even on narrow 
     page,
 }) => {
     await page.setViewportSize({ width: 320, height: 700 })
-    await page.goto('/friends/')
+    await page.goto('/social/')
 
     const separator = page.locator('.footer-separator-left')
     await expect(separator).toBeVisible()
@@ -292,7 +292,7 @@ test('item cards with a location show a location-dot icon', async ({
 })
 
 test('suggestion box expands in place without navigating', async ({ page }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
     const startUrl = page.url()
 
     await page.locator('#suggestionBox summary').click()
@@ -304,7 +304,7 @@ test('suggestion box expands in place without navigating', async ({ page }) => {
 test('suggestion box re-tapping toggles it open and closed', async ({
     page,
 }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
 
     const closedBox = await page.locator('#suggestionBox summary').boundingBox()
 
@@ -328,7 +328,7 @@ test('suggestion box re-tapping toggles it open and closed', async ({
 test('calendar box expands in place, offers Google and webcal links, and re-tapping closes it', async ({
     page,
 }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
     const startUrl = page.url()
 
     await page.locator('.calendar-box summary').click()
@@ -355,7 +355,7 @@ test('calendar box expands in place, offers Google and webcal links, and re-tapp
 test('gear info box opens to reveal Privacy and Contact links, and re-tapping closes it', async ({
     page,
 }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
 
     await page.locator('#utilityBox summary').click()
 
@@ -386,7 +386,7 @@ for (const [name, detailsSelector] of [
     test(`clicking outside or pressing Escape closes the ${name}`, async ({
         page,
     }) => {
-        await page.goto('/friends/')
+        await page.goto('/social/')
         const details = page.locator(detailsSelector)
 
         await details.locator('summary').click()
@@ -463,7 +463,7 @@ test('calendar box preview shows the next 3 upcoming events from the live feed, 
         }),
     )
 
-    await page.goto('/friends/')
+    await page.goto('/social/')
     await page.locator('.calendar-box summary').click()
 
     const rows = page.locator('.calendar-preview-row')
@@ -478,7 +478,7 @@ test('calendar box preview rows stay empty when the feed request fails', async (
 }) => {
     await page.route('**/events.ics', (route) => route.fulfill({ status: 500 }))
 
-    await page.goto('/friends/')
+    await page.goto('/social/')
     const feedResponse = page.waitForResponse('**/events.ics')
     await page.locator('.calendar-box summary').click()
     await feedResponse
@@ -498,7 +498,7 @@ test('calendar box preview rows stay empty when the feed request fails', async (
 test('opening the suggestion box also hides the back-to-top button', async ({
     page,
 }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
     await page.evaluate(() => window.scrollTo(0, 2000))
     await expect(page.locator('#backToTop')).toBeVisible()
 
@@ -512,7 +512,7 @@ test('opening the suggestion box also hides the back-to-top button', async ({
 test('suggestion form shows inline confirmation without navigating', async ({
     page,
 }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
     await page.locator('#suggestionBox summary').click()
 
     // Netlify intercepts the real POST; mock it so the test is self-contained
@@ -528,7 +528,7 @@ test('suggestion form shows inline confirmation without navigating', async ({
     await page.click('.suggestion-submit')
 
     // Should stay on the same page
-    expect(page.url()).toContain('/friends')
+    expect(page.url()).toContain('/social')
 
     // Form replaced by confirmation message
     await expect(page.locator('.suggestion-thanks')).toBeVisible()
@@ -566,7 +566,7 @@ test('suggestion form shows inline confirmation without navigating', async ({
 test('suggestion form shows an error message on a failed submission', async ({
     page,
 }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
     await page.locator('#suggestionBox summary').click()
 
     await page.route('/', async (route) => {
@@ -588,7 +588,7 @@ test('suggestion form shows an error message on a failed submission', async ({
 test('suggestion form shows a connection error message on a network failure', async ({
     page,
 }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
     await page.locator('#suggestionBox summary').click()
 
     await page.route('/', async (route) => {
@@ -609,7 +609,7 @@ test('suggestion form shows a connection error message on a network failure', as
 test('suggestion box character counter updates as the user types', async ({
     page,
 }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
     await page.locator('#suggestionBox summary').click()
 
     await page.fill('#suggestionMessage', 'a'.repeat(10))
@@ -673,7 +673,7 @@ test('links are ordered calendar > instagram > discord > website > facebook', as
     // instagram and a facebook link, rather than hardcoding a specific
     // business - content changes independently of this test.
     let found = false
-    for (const path of ['/music/', '/makers/', '/friends/', '/cafes/']) {
+    for (const path of ['/music/', '/makers/', '/social/', '/cafes/']) {
         await page.goto(path)
         const lists = page.locator('ul.entry-links')
         const listCount = await lists.count()
@@ -754,7 +754,7 @@ test('re-clicking the active category pill is a no-op', async ({ page }) => {
 test('back-to-top button appears on scroll and returns to the top', async ({
     page,
 }) => {
-    await page.goto('/friends/')
+    await page.goto('/social/')
     const button = page.locator('#backToTop')
 
     await page.evaluate(() => window.scrollTo(0, 2000))
@@ -769,13 +769,13 @@ test('back-to-top button appears on scroll and returns to the top', async ({
 test('tapping a card rewrites the URL to its permalink and marks it active', async ({
     page,
 }) => {
-    await page.goto('/friends/')
-    const card = page.locator('#friends-o4us')
+    await page.goto('/social/')
+    const card = page.locator('#social-o4us')
     await card.locator('.item-tap-target').click()
 
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe('/friends/o4us')
+        .toBe('/social/o4us')
     await expect(card).toHaveClass(/item-active/)
     await expect(card.locator('.item-tap-target')).toHaveAttribute(
         'aria-pressed',
@@ -786,18 +786,18 @@ test('tapping a card rewrites the URL to its permalink and marks it active', asy
 test('tapping an active card again reverts to the category URL', async ({
     page,
 }) => {
-    await page.goto('/friends/')
-    const card = page.locator('#friends-o4us')
+    await page.goto('/social/')
+    const card = page.locator('#social-o4us')
     await card.locator('.item-tap-target').click()
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe('/friends/o4us')
+        .toBe('/social/o4us')
 
     await card.locator('.item-tap-target').click()
 
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe('/friends')
+        .toBe('/social')
     await expect(card).not.toHaveClass(/item-active/)
     await expect(card.locator('.item-tap-target')).toHaveAttribute(
         'aria-pressed',
@@ -809,8 +809,8 @@ test('clicking a link inside an unselected card navigates and also selects it', 
     page,
     context,
 }) => {
-    await page.goto('/friends/')
-    const card = page.locator('#friends-o4us')
+    await page.goto('/social/')
+    const card = page.locator('#social-o4us')
     const link = card.getByRole('link', { name: /Events Calendar/ })
 
     const [popup] = await Promise.all([
@@ -821,7 +821,7 @@ test('clicking a link inside an unselected card navigates and also selects it', 
 
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe('/friends/o4us')
+        .toBe('/social/o4us')
     await expect(card).toHaveClass(/item-active/)
     await expect(card.locator('.item-tap-target')).toHaveAttribute(
         'aria-pressed',
@@ -833,8 +833,8 @@ test('clicking a link inside an already-selected card leaves it selected', async
     page,
     context,
 }) => {
-    await page.goto('/friends/')
-    const card = page.locator('#friends-o4us')
+    await page.goto('/social/')
+    const card = page.locator('#social-o4us')
     await card.locator('.item-tap-target').click()
     await expect(card).toHaveClass(/item-active/)
 
@@ -848,41 +848,41 @@ test('clicking a link inside an already-selected card leaves it selected', async
     await expect(card).toHaveClass(/item-active/)
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe('/friends/o4us')
+        .toBe('/social/o4us')
 })
 
 test('activating a card via keyboard (Enter) toggles it the same as a click', async ({
     page,
 }) => {
-    await page.goto('/friends/')
-    const card = page.locator('#friends-o4us')
+    await page.goto('/social/')
+    const card = page.locator('#social-o4us')
     const tapTarget = card.locator('.item-tap-target')
     await tapTarget.focus()
     await tapTarget.press('Enter')
 
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe('/friends/o4us')
+        .toBe('/social/o4us')
     await expect(card).toHaveClass(/item-active/)
 
     await tapTarget.press(' ')
 
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe('/friends')
+        .toBe('/social')
     await expect(card).not.toHaveClass(/item-active/)
 })
 
 test('clicking a different card while one is active switches directly', async ({
     page,
 }) => {
-    await page.goto('/friends/')
-    const first = page.locator('#friends-o4us')
+    await page.goto('/social/')
+    const first = page.locator('#social-o4us')
     await first.locator('.item-tap-target').click()
     await expect(first).toHaveClass(/item-active/)
 
     const other = page
-        .locator('wa-card.item[data-category="friends"]:not(#friends-o4us)')
+        .locator('wa-card.item[data-category="social"]:not(#social-o4us)')
         .first()
     await other.locator('.item-tap-target').click()
 
@@ -891,17 +891,17 @@ test('clicking a different card while one is active switches directly', async ({
     const otherSlug = await other.getAttribute('data-slug')
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe(`/friends/${otherSlug}`)
+        .toBe(`/social/${otherSlug}`)
 })
 
 test('back-to-top reverts an active card permalink to the category URL', async ({
     page,
 }) => {
-    await page.goto('/friends/')
-    await page.locator('#friends-o4us').locator('.item-tap-target').click()
+    await page.goto('/social/')
+    await page.locator('#social-o4us').locator('.item-tap-target').click()
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe('/friends/o4us')
+        .toBe('/social/o4us')
 
     // Scroll deep so #backToTop clears its visibility threshold (see the
     // pre-existing "back-to-top button appears on scroll" test).
@@ -912,15 +912,15 @@ test('back-to-top reverts an active card permalink to the category URL', async (
 
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe('/friends')
-    await expect(page.locator('#friends-o4us')).not.toHaveClass(/item-active/)
+        .toBe('/social')
+    await expect(page.locator('#social-o4us')).not.toHaveClass(/item-active/)
 })
 
 test('landing directly on an item permalink scrolls it into view and marks it active', async ({
     page,
 }) => {
-    await page.goto('/friends/o4us/')
-    const card = page.locator('#friends-o4us')
+    await page.goto('/social/o4us/')
+    const card = page.locator('#social-o4us')
 
     await expect(card).toHaveClass(/item-active/)
     await expect(card.locator('.item-tap-target')).toHaveAttribute(
@@ -939,8 +939,8 @@ test('item permalink active state still applies under prefers-reduced-motion', a
     page,
 }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' })
-    await page.goto('/friends/o4us/')
-    const card = page.locator('#friends-o4us')
+    await page.goto('/social/o4us/')
+    const card = page.locator('#social-o4us')
 
     await expect(card).toHaveClass(/item-active/)
 })
@@ -948,12 +948,12 @@ test('item permalink active state still applies under prefers-reduced-motion', a
 test('switching category while a card is active clears its active state', async ({
     page,
 }) => {
-    await page.goto('/friends/')
-    const card = page.locator('#friends-o4us')
+    await page.goto('/social/')
+    const card = page.locator('#social-o4us')
     await card.locator('.item-tap-target').click()
     await expect
         .poll(() => page.evaluate(() => location.pathname))
-        .toBe('/friends/o4us')
+        .toBe('/social/o4us')
 
     await page.locator('[data-filter="cafes"]').click()
 
@@ -971,7 +971,7 @@ test('/privacy loads, links back to the directory, and links to /contact', async
     await expect(page).toHaveTitle(/Privacy/)
     const backLink = page.locator('.back-link')
     await expect(backLink).toBeVisible()
-    await expect(backLink).toHaveAttribute('href', '/friends')
+    await expect(backLink).toHaveAttribute('href', '/social')
     await expect(page.locator('a[href="/contact"]').first()).toBeVisible()
 })
 
@@ -983,7 +983,7 @@ test('/contact loads, links back to the directory, and links to /privacy', async
     await expect(page).toHaveTitle(/Contact/)
     const backLink = page.locator('.back-link')
     await expect(backLink).toBeVisible()
-    await expect(backLink).toHaveAttribute('href', '/friends')
+    await expect(backLink).toHaveAttribute('href', '/social')
 })
 
 test('contact form shows inline confirmation without navigating', async ({

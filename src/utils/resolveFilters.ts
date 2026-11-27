@@ -36,7 +36,7 @@ export async function getFilterStaticPaths(): Promise<(string | undefined)[]> {
 export async function resolveFilters(filters = '') {
     const filterSlugs = filters.split('/').filter(Boolean)
     const effectiveFilterSlugs =
-        filterSlugs.length === 0 ? ['friends'] : filterSlugs
+        filterSlugs.length === 0 ? ['social'] : filterSlugs
     const initialCategories = effectiveFilterSlugs.filter((s) =>
         categorySlugs.includes(s),
     )
@@ -86,8 +86,8 @@ export async function resolveFilters(filters = '') {
 
     const categoryPart = activeCategory
         ? (categoryMap[activeCategory]?.descriptor ??
-          categoryMap.friends.descriptor)
-        : categoryMap.friends.descriptor
+          categoryMap.social.descriptor)
+        : categoryMap.social.descriptor
     const pageTitle = activeItem
         ? `${activeItem.name} | ${categoryPart}`
         : categoryPart

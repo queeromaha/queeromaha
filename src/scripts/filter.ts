@@ -119,7 +119,7 @@ function initFilters() {
 
     function buildUrl() {
         const parts = [...activeCategories]
-        return parts.length === 0 ? '/friends' : `/${parts.join('/')}`
+        return parts.length === 0 ? '/social' : `/${parts.join('/')}`
     }
 
     function clearType(type: string, activeSet: Set<string>) {

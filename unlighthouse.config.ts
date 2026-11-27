@@ -5,7 +5,7 @@ export default {
         samples: 1,
         device: 'mobile',
         // Explicit routes, no crawling.
-        urls: ['/', '/friends', '/friends/o4us'],
+        urls: ['/', '/social', '/social/o4us'],
         skipJavascript: true,
     },
     lighthouseOptions: {
