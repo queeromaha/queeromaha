@@ -1,5 +1,5 @@
 const REDIRECT_SECONDS = 8
-const REDIRECT_URL = '/friends'
+const REDIRECT_URL = '/social'
 
 window.posthog?.capture('page_not_found', {
     path: window.location.pathname,

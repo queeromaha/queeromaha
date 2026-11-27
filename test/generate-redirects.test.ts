@@ -130,9 +130,9 @@ describe('generateRedirects', () => {
     })
 
     test('normalizes whitespace from static entries', () => {
-        const staticContent = '/   /friends  301\n'
+        const staticContent = '/   /social  301\n'
         const result = generateRedirects(staticContent, [])
-        expect(result).toBe('/  /friends  301\n')
+        expect(result).toBe('/  /social  301\n')
     })
 
     test('ends with a trailing newline', () => {

@@ -1,7 +1,7 @@
 const CACHE = 'qo-v3'
 const PRECACHE = [
     '/',
-    '/friends',
+    '/social',
     '/spiritual',
     '/art',
     '/cafes',

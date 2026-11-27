@@ -89,7 +89,7 @@ describe('buildMessage', () => {
     const meta = {
         id: 'abc',
         date: new Date('2026-10-29T12:00:00Z'),
-        page: '/friends/',
+        page: '/social/',
     }
 
     test('sets Reply-To for contact messages and encodes the body', () => {
@@ -109,7 +109,7 @@ describe('buildMessage', () => {
             ),
         )
         expect(text).toContain('héllo')
-        expect(text).toContain('Page: /friends/')
+        expect(text).toContain('Page: /social/')
     })
 
     test('has no Reply-To for suggestions', () => {
@@ -130,7 +130,7 @@ describe('handleForm', () => {
         ...overrides,
     })
     const post = (body: string, accept = '*/*') =>
-        new Request('https://queeromaha.dev/friends/', {
+        new Request('https://queeromaha.dev/social/', {
             method: 'POST',
             headers: {
                 'content-type': 'application/x-www-form-urlencoded',
@@ -221,7 +221,7 @@ describe('handleForm', () => {
             async () => {},
         )
         expect(res.headers.get('content-type')).toContain('text/html')
-        expect(await res.text()).toContain('href="/friends/"')
+        expect(await res.text()).toContain('href="/social/"')
     })
 
     test('rejects other encodings', async () => {
